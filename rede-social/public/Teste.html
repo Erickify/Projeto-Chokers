@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Imagem como Input</title>
+  <style>
+    img {
+      width: 150px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Apenas a imagem no HTML -->
+  <img src="./imgs/img_perfil-teste.jpg" alt="Clique para enviar imagem" id="imgUploader">
+
+  <script>
+    const img = document.getElementById('imgUploader');
+
+    img.addEventListener('click', () => {
+      // Cria o input dinamicamente
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.multiple = true;
+
+      // Quando arquivos forem selecionados
+      input.addEventListener('change', () => {
+        for (const file of input.files) {
+          console.log('Arquivo selecionado:', file.name);
+          // Aqui você pode fazer algo com o arquivo, como enviar ou mostrar preview
+        }
+      });
+
+      // Dispara o clique
+      input.click();
+    });
+  </script>
+
+</body>
+</html>

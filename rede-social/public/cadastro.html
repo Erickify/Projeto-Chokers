@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./imgs/chok 3.png" type="image/x-icon">
+
+
+  <title>Cadastro | Chokers</title>
+
+  <script src="./js/sessao.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link rel="stylesheet" href="./css/styles-cadas-login.css">
+</head>
+
+<body id="cadas">
+
+
+  <main id="main_cadas">
+
+    <div class="container">
+
+
+      <div class="formulario">
+        <div class="div_nome_user">
+
+          <div class="campo">
+
+            <span>Nome:</span>
+
+            <input id="nome_input" type="text" placeholder="Seu nome" autocomplete="off" value="Kabru" />
+
+          </div>
+
+          <div class="campo">
+
+            <span>User:</span>
+
+            <input id="user_input" type="text" placeholder="@user..." autocomplete="off" value="KabruDoMal2"
+              oninput="verificarUser()" />
+
+          </div>
+
+        </div>
+        <div class="campo">
+          <span>E-mail:</span>
+          <input id="email_input" type="text" placeholder="meuemail@provedor.com" autocomplete="off"
+            value="kabru@sptech.school" oninput="verificarUser()" />
+        </div>
+        <div class="campo">
+          <span>Senha:</span>
+          <input id="senha_input" type="password" placeholder="******" value="Kabru093" autocomplete="off" />
+        </div>
+        <div class="campo">
+          <span>Confirmação da Senha:</span>
+          <input id="confirmacao_senha_input" type="password" placeholder="******" autocomplete="off"
+            value="Kabru093" />
+        </div>
+      </div>
+      <button class="botao" onclick="cadastrar()">Cadastrar</button>
+      <p style="cursor: pointer; font-weight: 100;"><a href="./login.html"><u>já tem uma conta?</u></a></p>
+
+    </div>
+    </div>
+
+  </main>
+
+
+  <aside>
+    <section>
+      <a href="./index.html">
+        <div class="div_voltar">
+          <p>VOLTAR</p>
+          <div class="div_icone_voltar">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+              fill="currentcolor">
+              <path
+                d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+            </svg>
+          </div>
+        </div>
+      </a>
+    </section>
+  </aside>
+
+</body>
+
+</html>
+
+<script>
+
+  var userExiste = false
+
+  var emailExiste = false
+
+  function verificarUser() {
+
+    var user = user_input.value
+
+    var email = email_input.value
+
+    fetch(`/usuarios/verificarUser`)
+      .then((response) => response.json())
+      .then((users) => {
+
+
+        for (let i = 0; i < users.length; i++) {
+
+          if (users[i].userUsuario.toUpperCase() == user.toUpperCase()) {
+
+            userExiste = true
+
+            break
+
+          } else {
+
+            userExiste = false
+
+          }
+        }
+
+        for (let i = 0; i < users.length; i++) {
+
+          if (users[i].emailUsuario.toUpperCase() == email.toUpperCase()) {
+
+
+            emailExiste = true
+
+            break
+
+          } else {
+
+            emailExiste = false
+
+          }
+
+        };
+
+
+
+      })
+      .catch(() => {
+
+        console.log("erro : user n está em uso")
+
+      })
+
+  }
+
+
+  function cadastrar() {
+
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var userVar = user_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      userVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      alert("Preencha todos os campos")
+      return false;
+    } else if (!emailVar.includes("@")) {
+
+      alert("Insira um email válido")
+      return false;
+    } else if (!(senhaVar.length >= 5)) {
+
+      alert("A senha deve conter ao menos 5 caracteres")
+      return false;
+    } else if (senhaVar != confirmacaoSenhaVar) {
+
+      alert("As confirmação de senha está errada")
+      return false;
+
+    } else if (userExiste) {
+
+      alert("User já existe")
+      return false
+
+    } else if (emailExiste) {
+
+      alert("email já existe")
+      return false
+
+    }
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        userServer: userVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, 2000);
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+
+
+
+</script>

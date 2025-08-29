@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Choker`s</title>
+	<!-- Link para o arquivo CSS -->
+	<link rel="stylesheet" href="./css/styles-feed.css" />
+	<link rel="shortcut icon" href="./imgs/chok 3.png" type="image/x-icon">
+
+</head>
+
+<body onload="user(), listarPosts(), listarPessoasOnline()">
+	<nav id="nav_feed">
+		<section id="sect_perfil_nav">
+			<div class="div_nav_topo" id="nav_perfil">
+				<img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav" />
+
+				<div class="div_perfil1_nav_topo"></div>
+
+				<div class="div_perfil2_nav_topo"></div>
+			</div>
+		</section>
+
+		<div class="div_nav">
+			<div class="nome_user" id="nome_user">
+				<h1 class="nomeUsuario" id="nomeUsuarioNav">Roberto Carlos</h1>
+				<p class="userUsuario" id="userUsuarioNav">@robeertinho</p>
+			</div>
+
+			<ul id="lista_nav">
+				<span>
+					<a href="./perfil.html">
+						<li>
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+								fill="currentcolor" class="icone_lista">
+								<path
+									d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+							</svg>
+
+							<h3>PERFIL</h3>
+						</li>
+					</a>
+					<a href="#">
+						<li id="pagina_atual">
+							<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+								fill="currentcolor" class="icone_lista">
+								<path
+									d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
+							</svg>
+
+							<h3 class="pagina_atual">HOME</h3>
+						</li>
+					</a>
+				</span>
+				<ul onclick="sair()">
+					<span id="span_sair">
+						<a href="#" id="a_sair">
+							<li>
+								<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960"
+									width="24px" fill="currentcolor" class="icone_lista">
+									<path
+										d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+								</svg>
+								<h3>SAIR</h3>
+							</li>
+						</a>
+					</span>
+				</ul>
+			</ul>
+		</div>
+	</nav>
+
+	<main id="main_feed">
+		<!-- Contêiner onde o feed será inserido -->
+		<div id="feed-container"></div>
+		<!-- 
+        <div class="div_post">
+
+            <section id="sect_perfil_post">
+
+                <div class="div_post_topo">
+
+
+                    <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_post">
+
+                    <div class="div_perfil1_post_topo">
+                    </div>
+
+                    <div class="div_perfil2_post_topo">
+
+                        <div class="nome_user" id="nome_user">
+
+                            <h1 class="nomeUsuario">Roberto Carlos</h1>
+                            <p class="userUsuario">@robeertinho</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <div class="div_corpo_post">
+
+            <div class="div_post_desc">
+
+                <p id="desc_post">
+                    aaaaaaaaaaaaa
+                </p>
+
+            </div>
+
+            <div class="div_post_img">
+                <img src="./imgs/img_perfil-teste.jpg" alt="" id="img_corpo_post">
+            </div>
+
+        </div> -->
+	</main>
+
+	<aside id="aside_feed">
+
+		<section id="sec_pessoas_online">
+
+			<h1 id="titulo_online">Usuarios online</h1>
+
+
+
+		</section>
+
+		<div id="div_criar_chok">
+			<button onclick="criar_popup()" class="btn_postar">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+					fill="currentcolor" class="icone_lista">
+					<path
+						d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z" />
+				</svg>
+				<h1>Postar</h1>
+			</button>
+		</div>
+	</aside>
+
+	<div id="div_popup">
+		<div class="div_nav_topo">
+			<img src="./imgs/img_perfil-teste.jpg" alt="" id="img_perfil_nav_chok" />
+
+			<div class="div_perfil1_nav_topo"></div>
+
+			<div class="div_perfil2_nav_topo">
+				<span>
+					<h1 class="nomeUsuario" id="nomeUsuario_popup"></h1>
+					<p class="userUsuario" id="userUsuario_popup"></p>
+				</span>
+
+				<div class="div_fechar" onclick="fechar_popup()">
+					<p>X</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="div_corpo_popup">
+			<textarea name="" id="textarea_descPost" placeholder="Faça seu Choke"></textarea>
+			<label for="foto">
+				<div class="div_add_img">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+						fill="currentcolor">
+						<path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
+					</svg>
+				</div>
+				<input type="file" name="foto" id="foto" style="display: none;" />
+			</label>
+
+			<div class="div_btns_popup">
+				<button onclick="criar_post()">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+						fill="currentcolor">
+						<path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<section id="sec_comentario_modal">
+		<div class="div_nav_topo" id="div_nav_topo_comentario">
+			<img src="./imgs/img_perfil-teste.jpg" alt="" id="img_pfp_comentario" />
+
+			<div class="div_perfil1_nav_topo"></div>
+
+			<div class="div_perfil2_nav_topo">
+				<div class="nome_user">
+					<h1 class="nomeUsuario" id="nomeUsuario_comentario_modal"></h1>
+					<p class="userUsuario" id="userUsuario_comentario_modal"></p>
+				</div>
+				<div class="div_fechar" onclick="abrirModal()">
+					<h1>X</h1>
+				</div>
+			</div>
+		</div>
+
+		<div class="div_corpo_comentario_modal">
+			<textarea name="" id="textarea_comentairo" placeholder="Faça seu comentario"></textarea>
+
+			<div class="div_btns_comentario_modal">
+				<button onclick="comentar()">
+					<svg xmlns="http://www.w3.org/2000/svg" height="35px"
+						viewBox="0 -960 960 960" width="35px" fill="currentcolor">
+						<path d="M120-160v-240l320-80-320-80v-240l760 320-760 320Z" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- Script JavaScript -->
+
+	<script src="./js/script-feed.js"></script>
+</body>
+
+</html>
+
+<script>
+	var nomeUsuario = sessionStorage.NOME_USUARIO;
+	var emailUsuario = sessionStorage.EMAIL_USUARIO;
+	var userUsuario = sessionStorage.USER_USUARIO;
+	var idUsuario = sessionStorage.ID_USUARIO;
+	var bioUsuario = sessionStorage.BIO_USUARIO;
+	var pfpUsuario = sessionStorage.PFP_USUARIO;
+
+	var dadosPostVar = [];
+
+	var post_idPost = [];
+	var post_descPost = [];
+	var post_curtidasPost = [];
+	var post_imgPost = [];
+	var post_idUsuario = [];
+	var post_nomeUsuario = [];
+	var post_userUsuario = [];
+	var post_emailUser = [];
+
+	//modals
+
+	var modalAberto = false;
+
+	var comentarioAberto = false;
+
+	modal_comentario = "sec_comentario_modal";
+
+	function user() {
+		console.log(`nome: ${nomeUsuario}`);
+		console.log(`email: ${emailUsuario}`);
+		console.log(`id: ${idUsuario}`);
+		console.log(`user: ${userUsuario}`);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-primaria",
+			sessionStorage.CORPRI
+		);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-secundaria",
+			sessionStorage.CORSEC
+		);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-terciaria",
+			sessionStorage.CORTERC
+		);
+
+		document.documentElement.style.setProperty(
+			"--var-cor-secundaria-escura",
+			sessionStorage.CORSECE
+		);
+
+		nomeUsuarioNav.innerHTML = nomeUsuario;
+		userUsuarioNav.innerHTML = `@${userUsuario}`;
+		nomeUsuario_popup.innerHTML = nomeUsuario;
+		userUsuario_popup.innerHTML = `@${userUsuario}`;
+		img_perfil_nav_chok.src = `./assets/foto_perfil/${pfpUsuario}`;
+
+		div_nav_topo_comentario.innerHTML = `
+        
+                    <img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
+
+            <div class="div_perfil1_nav_topo">
+            </div>
+
+            <div class="div_perfil2_nav_topo">
+
+                <div class="nome_user">
+
+                    <h1 class="nomeUsuario" id="nomeUsuario_comentario_modal">${nomeUsuario}</h1>
+                    <p class="userUsuario" id="userUsuario_comentario_modal">@${userUsuario}</p>
+
+                </div>
+					<div class="div_fechar" onclick="abrirModal(modal_comentario)">
+						<p>X</p>
+					</div>
+            </div>
+
+        `;
+
+		nav_perfil.innerHTML = `
+
+
+                <img src="./assets/foto_perfil/${pfpUsuario}" alt="" id="img_perfil_nav">
+
+                <div class="div_perfil1_nav_topo">
+                </div>
+
+                <div class="div_perfil2_nav_topo">
+                </div>
+`;
+
+		fetch(`/usuarios/status/${idUsuario}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				statusUsuario: 1,
+			}),
+		}).then(function (resposta) {
+			console.log("resposta: ", resposta);
+		});
+	}
+
+	function criar_post() {
+		var descPostVar = textarea_descPost.value;
+
+		console.log(descPostVar);
+
+
+		var imagem = foto.files[0];
+
+
+		if ((!descPostVar || descPostVar == "") && !imagem) {
+			alert("Insira um texto ou uma imgem legal!");
+		} else if ((!descPostVar || descPostVar == "") && imagem) {
+
+
+			descPostVar = " ";
+
+			const formData = new FormData();
+			formData.append("foto", imagem);
+			formData.append("descPost", descPostVar);
+			formData.append("idUsuario", idUsuario);
+
+			fetch("/post/postar", {
+				method: "POST",
+				body: formData,
+			})
+				.then((resposta) => {
+					console.log("Post realizado com sucesso!");
+					fechar_popup();
+					listarPosts();
+					foto.value = "";
+					descPostVar = undefined;
+				})
+				.catch((err) => {
+					console.log(`#ERRO: ${err}`);
+					foto.value = "";
+					descPostVar = undefined;
+				});
+		} else {
+			const formData = new FormData();
+			formData.append("foto", imagem);
+			formData.append("descPost", descPostVar);
+			formData.append("idUsuario", idUsuario);
+
+			fetch("/post/postar", {
+				method: "POST",
+				body: formData,
+			})
+				.then((resposta) => {
+					console.log("Post realizado com sucesso!");
+					fechar_popup();
+					listarPosts();
+					foto.value = "";
+					descPostVar = undefined;
+				})
+				.catch((err) => {
+					console.log(`#ERRO: ${err}`);
+					foto.value = "";
+					descPostVar = undefined;
+				});
+		}
+	}
+
+	function listarPosts() {
+		fetch("/post/listarPosts")
+			.then((response) => response.json())
+			.then((dadosPost) => {
+				const feedContainer = document.getElementById("feed-container");
+				feedContainer.innerHTML = "";
+
+				dadosPost.forEach((post) => {
+					var idPost = post.idPost;
+
+					const idConvidado = post.idUsuario;
+					const postDiv = document.createElement("div");
+					postDiv.className = "div_post";
+					postDiv.id = post.idPost;
+
+					const section = document.createElement("section");
+					section.className = "sect_perfil_post";
+
+					const topo = document.createElement("div");
+					topo.className = "div_post_topo";
+
+					const imgPerfil = document.createElement("img");
+					imgPerfil.src = `./assets/foto_perfil/${post.pfpUsuario}`;
+					imgPerfil.className = "img_perfil_post";
+					imgPerfil.onclick = () => buscarPerfil(idConvidado);
+
+					const div1 = document.createElement("div");
+					div1.className = "div_perfil1_post_topo";
+
+					const div2 = document.createElement("div");
+					div2.className = "div_perfil2_post_topo";
+
+					const nomeDiv = document.createElement("div");
+					nomeDiv.className = "nome_user";
+
+					const h1 = document.createElement("h1");
+					h1.className = "nomeUsuario";
+					h1.textContent = post.nomeUsuario;
+
+					const p = document.createElement("p");
+					p.className = "userUsuario";
+					p.textContent = `@${post.userUsuario}`;
+
+					nomeDiv.appendChild(h1);
+					nomeDiv.appendChild(p);
+					div2.appendChild(nomeDiv);
+					topo.appendChild(imgPerfil);
+					topo.appendChild(div1);
+					topo.appendChild(div2);
+					section.appendChild(topo);
+
+					// Corpo do post
+					const corpo = document.createElement("div");
+					corpo.id = "corpo_post";
+					corpo.className = "div_corpo_post";
+
+					const descDiv = document.createElement("div");
+					descDiv.className = "div_post_desc";
+
+					const descP = document.createElement("p");
+					descP.className = "p_descPost";
+					descP.textContent = post.descPost;
+
+					descDiv.appendChild(descP);
+
+					if (post.imgPost != "null") {
+						const imgDiv = document.createElement("div");
+						imgDiv.className = "div_post_img";
+
+						const imgPost = document.createElement("img");
+						imgPost.id = "img_corpo_post";
+						imgPost.src = `assets/${post.imgPost}`;
+
+						imgDiv.appendChild(imgPost);
+
+						corpo.appendChild(imgDiv);
+					}
+
+					corpo.appendChild(descDiv);
+					postDiv.appendChild(section);
+					postDiv.appendChild(corpo);
+
+					const iconsDiv = document.createElement("div");
+					iconsDiv.className = "div_icons_post";
+
+					iconsDiv.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_comentario_post" class="img_post_comentario" onclick="listarComentarios(${idPost})"><path d="M880-80 720-240H320q-33 0-56.5-23.5T240-320v-40h440q33 0 56.5-23.5T760-440v-280h40q33 0 56.5 23.5T880-640v560ZM160-473l47-47h393v-280H160v327ZM80-280v-520q0-33 23.5-56.5T160-880h440q33 0 56.5 23.5T680-800v280q0 33-23.5 56.5T600-440H240L80-280Zm80-240v-280 280Z"/></svg>
+
+                    <div class="curtidas_post" id="icon_curtida_${idPost}">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_curtida_post" class="img_post_curtida" onclick="curtir(${idPost})"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
+                
+                    </div>
+                    `;
+					corpo.appendChild(iconsDiv);
+
+					const comentarioDiv = document.createElement("div");
+					comentarioDiv.className = "div_comentario";
+					comentarioDiv.id = `comentarios_post_${post.idPost}`;
+
+					const cabecarioComentario = document.createElement("div");
+					cabecarioComentario.className = "cabecario_comentario";
+					cabecarioComentario.id = `cabecario_comentario_${post.idPost}`;
+
+					const tituloComentario = document.createElement("h1");
+					tituloComentario.className = "titulo_comentario";
+					tituloComentario.textContent = "Comentarios";
+
+					const btnComentar = document.createElement("div");
+					btnComentar.className = "div_bntComentar";
+					btnComentar.onclick = () =>
+						abrirModal(modal_comentario, post.idPost);
+
+					btnComentar.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_comentario_post_btn" class="img_post_comentario"><path d="M880-80 720-240H320q-33 0-56.5-23.5T240-320v-40h440q33 0 56.5-23.5T760-440v-280h40q33 0 56.5 23.5T880-640v560ZM160-473l47-47h393v-280H160v327ZM80-280v-520q0-33 23.5-56.5T160-880h440q33 0 56.5 23.5T680-800v280q0 33-23.5 56.5T600-440H240L80-280Zm80-240v-280 280Z"/></svg>`;
+
+					cabecarioComentario.appendChild(tituloComentario);
+					cabecarioComentario.appendChild(btnComentar);
+
+					corpo.appendChild(cabecarioComentario);
+					corpo.appendChild(comentarioDiv);
+
+					feedContainer.appendChild(postDiv);
+				});
+			})
+			.catch((err) => {
+				console.log(`#ERRO: ${err}`);
+			});
+	}
+
+	function listarComentarios(idPost) {
+		if (!comentarioAberto) {
+			comentarioAberto = true;
+			fetch(`/post/listarComentarios/${idPost}`)
+				.then((response) => response.json())
+				.then((comentarios) => {
+					const comentarioDiv = document.getElementById(
+						`comentarios_post_${idPost}`
+					);
+
+					comentarioDiv.innerHTML = "";
+
+					const cabecarioComentario = document.getElementById(
+						`cabecario_comentario_${idPost}`
+					);
+					cabecarioComentario.style.display = "flex";
+
+					comentarios.forEach((comentario) => {
+						const userComentarioDiv = document.createElement("div");
+						userComentarioDiv.className = "user_comentario_div";
+
+						const imagemUserComentarios = document.createElement("img");
+						imagemUserComentarios.src = `./assets/foto_perfil/${comentario.pfpUsuario}`;
+						imagemUserComentarios.className = "img_perfil_comentario";
+						imagemUserComentarios.onclick = () =>
+							buscarPerfil(comentario.fkUsuario);
+
+						const nomeUsuarioComentarios = document.createElement("div");
+						nomeUsuarioComentarios.className = "div_info_comentario";
+
+						const h1NomeComentario = document.createElement("h1");
+						h1NomeComentario.className = "nomeUsuario";
+						h1NomeComentario.textContent = comentario.nomeUsuario;
+
+						const pUserComentario = document.createElement("p");
+						pUserComentario.className = "userUsuario";
+						pUserComentario.textContent = `@${comentario.userUsuario}`;
+
+						nomeUsuarioComentarios.appendChild(h1NomeComentario);
+						nomeUsuarioComentarios.appendChild(pUserComentario);
+
+						userComentarioDiv.appendChild(imagemUserComentarios);
+						userComentarioDiv.appendChild(nomeUsuarioComentarios);
+
+						const descComentarioDiv = document.createElement("div");
+						descComentarioDiv.className = "div_desc_comentario";
+
+						const descComentario = document.createElement("p");
+						descComentario.className = "p_desc_comentario";
+						descComentario.textContent = comentario.descComentario;
+
+						descComentarioDiv.appendChild(descComentario);
+
+						comentarioDiv.appendChild(userComentarioDiv);
+						comentarioDiv.appendChild(descComentarioDiv);
+					});
+				})
+				.catch((err) => {
+					console.error("Erro ao listar comentários:", err);
+					comentarioAberto = false;
+				});
+		} else {
+			comentarioAberto = false;
+			const comentarioDiv = document.getElementById(
+				`comentarios_post_${idPost}`
+			);
+			comentarioDiv.innerHTML = "";
+
+			const cabecarioComentario = document.getElementById(
+				`cabecario_comentario_${idPost}`
+			);
+			cabecarioComentario.style.display = "none";
+		}
+	}
+
+	function listarAmigos() {
+		fetch("/user/listarAmigos")
+			.then((response) => response.json())
+
+			.then(console.log("deu bom"))
+
+			.then((listaAmigos) => { })
+	}
+
+	function criar_popup() {
+		div_popup.style.display = "block"
+		nav_feed.classList.add("blur")
+		main_feed.classList.add("blur")
+		aside_feed.classList.add("blur")
+	}
+
+	function fechar_popup() {
+		div_popup.style.display = "none"
+		nav_feed.classList.remove("blur")
+		main_feed.classList.remove("blur")
+		aside_feed.classList.remove("blur")
+	}
+
+	function curtir(idPost) {
+		fetch(`/post/curtir/${idPost}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				idUsuario: sessionStorage.ID_USUARIO,
+			}),
+		}).then((res) => {
+			if (res.ok) {
+
+				var curtiu = true
+
+				contarCurtida(idPost, curtiu)
+			
+			} else {
+			
+				descurtir(idPost)
+			
+			}
+		});
+	}
+
+	function descurtir(idPost) {
+		fetch(`/post/descurtir/${idPost}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				idUsuario: sessionStorage.ID_USUARIO,
+			}),
+		}).then(() => {
+			var curtiu = false;
+
+			contarCurtida(idPost, curtiu)
+		
+		});
+	}
+
+	function contarCurtida(idPost, curtiu) {
+		fetch(`/post/contarCurtida/${idPost}`)
+			.then((response) => response.json())
+			.then((curtidas) => {
+				var divCurtidas = document.getElementById(`icon_curtida_${idPost}`);
+
+				console.log(curtidas[0].qtdCurtidas);
+
+				if (curtiu) {
+					divCurtidas.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_curtida_post" class="img_post_curtida" onclick="curtir(${idPost})"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/></svg>
+                    <p>${curtidas[0].qtdCurtidas}</p>
+                   `;
+				} else {
+					if (!(curtidas[0].qtdCurtidas == 0)) {
+						divCurtidas.innerHTML = ` 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_curtida_post" class="img_post_curtida" onclick="curtir(${idPost})"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
+                    
+                    <p>${curtidas[0].qtdCurtidas}</p>
+                   `;
+					} else {
+						divCurtidas.innerHTML = ` 
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor" id="icone_curtida_post" class="img_post_curtida" onclick="curtir(${idPost})"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/></svg>
+                               `;
+					}
+				}
+			});
+	}
+
+	function buscarPerfil(idConvidado) {
+		console.log(idConvidado);
+
+		sessionStorage.ID_CONVIDADO = idConvidado;
+
+		window.location = "perfilSeguidor.html";
+	}
+
+	function abrirModal(modalId, idPost) {
+		console.log("tentando abrir o modal");
+
+		const modal = document.getElementById(modalId);
+
+		sessionStorage.ID_POST_ATUAL = idPost;
+
+		if (modalAberto) {
+			modal.style.display = "block";
+			modal.style.left = "-50%";
+			modalAberto = false;
+
+			nav_feed.classList.remove("blur");
+			main_feed.classList.remove("blur");
+			aside_feed.classList.remove("blur");
+		} else {
+			modal.style.display = "block";
+			modal.style.left = "50%";
+			modalAberto = true;
+
+			nav_feed.classList.add("blur");
+			main_feed.classList.add("blur");
+			aside_feed.classList.add("blur");
+		}
+	}
+
+	function comentar(idPost) {
+		var descComentarioVar = textarea_comentairo.value;
+		idPost = sessionStorage.ID_POST_ATUAL;
+
+		fetch(`/post/comentar/${idPost}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				descComentario: descComentarioVar,
+				idUsuario: sessionStorage.ID_USUARIO,
+			}),
+		}).then(() => {
+			abrirModal(modal_comentario);
+
+			comentarioAberto = false;
+
+			listarComentarios(idPost);
+
+			textarea_comentairo.value = "";
+		});
+	}
+
+
+
+	function listarPessoasOnline() {
+
+
+		fetch(`usuarios/listarPessoasOnline/${idUsuario}`)
+			.then((response) => response.json())
+			.then((online) => {
+
+				const sec_pessoas_online = document.getElementById("sec_pessoas_online")
+
+				console.log("quem online" + online[0])
+
+
+				online.forEach((quemOnline) => {
+
+					console.log("quem online" + quemOnline[0])
+
+					const idConvidado = quemOnline.idOnline
+					const div_online = document.createElement('div')
+					div_online.className = "div_quem_online"
+
+					const div_topo_online = document.createElement('div')
+					div_topo_online.className = "div_topo_online"
+
+					const img_online = document.createElement("img")
+					img_online.src = `assets/foto_perfil/${quemOnline.pfpQuemOnline}`
+					img_online.className = `pfp_quem_online`
+					img_online.style.cursor = "pointer"
+					img_online.onclick = () => buscarPerfil(idConvidado);
+
+					div_online.appendChild(img_online)
+
+					const div_info_usuario = document.createElement("div")
+					div_info_usuario.className = "div_info_online"
+
+					const nome_usuario = document.createElement("h1")
+					nome_usuario.textContent = `${quemOnline.nomeOnline}`
+
+					const user_usuario = document.createElement("p")
+					user_usuario.textContent = `@${quemOnline.userOnline}`
+
+					div_info_usuario.appendChild(nome_usuario)
+					div_info_usuario.appendChild(user_usuario)
+
+					const div_banner_online = document.createElement('div')
+					div_banner_online.className = "div_banner_online"
+
+					const img_banner_online = document.createElement('img')
+					img_banner_online.src = `assets/foto_perfil/${quemOnline.bannerQuemOnline}`
+					img_banner_online.id = `img_banner_online_${idConvidado}`
+
+					div_banner_online.appendChild(img_banner_online)
+
+
+
+					div_topo_online.appendChild(img_online)
+					div_topo_online.appendChild(div_info_usuario)
+
+					div_online.appendChild(div_topo_online)
+
+					div_online.appendChild(div_banner_online)
+
+					sec_pessoas_online.appendChild(div_online)
+
+
+
+
+				})
+
+
+			})
+
+
+	}
+
+
+	function sair() {
+		fetch(`/usuarios/status/${idUsuario}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				statusUsuario: 0,
+			}),
+		}).then(function (resposta) {
+			console.log("resposta: ", resposta);
+
+			window.location = "index.html";
+		});
+	}
+
+	window.onbeforeunload = () => {
+		const status = {
+			statusUsuario: 0,
+		};
+
+		const blob = new Blob([JSON.stringify(status)], {
+			type: "application/json",
+		});
+
+		navigator.sendBeacon(`usuarios/status/${idUsuario}`, blob);
+	};
+</script>

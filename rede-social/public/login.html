@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="shortcut icon" href="./imgs/chok 3.png" type="image/x-icon">
+
+
+	<title>login | Chokers</title>
+
+	<script src="./js/sessao.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link rel="stylesheet" href="./css/styles-cadas-login.css" />
+</head>
+
+<aside>
+	<section>
+		<a href="./index.html">
+			<div class="div_voltar">
+				<p>VOLTAR</p>
+				<div class="div_icone_voltar">
+					<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+						fill="currentcolor">
+						<path
+							d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z" />
+					</svg>
+				</div>
+			</div>
+		</a>
+	</section>
+</aside>
+
+<body id="logas">
+	<main id="main_logas">
+		<div class="container">
+			<div class="formulario">
+				<div class="campo">
+					<span>E-mail:</span>
+					<input id="email_input" type="text" placeholder="meuemail@provedor.com" id="logar_email_input" />
+				</div>
+				<div class="campo">
+					<span>Senha:</span>
+					<input id="senha_input" type="password" placeholder="******" id="logar_senha_input" />
+				</div>
+				<button class="botao" onclick="autenticar()">Logar</button>
+				<p style="cursor: pointer; font-weight: 100">
+					<a href="./cadastro.html"><u>não tem uma conta?</u></a>
+				</p>
+			</div>
+		</div>
+	</main>
+</body>
+
+</html>
+
+<script>
+	function autenticar() {
+		//Coleta de dados das inputs
+		var email = email_input.value;
+		var senha = senha_input.value;
+
+		// Validações
+		if (email == `` || senha == ``) {
+			alert(`Preencha todos os campos`);
+			div_mensagem = `Preencha todos os campos`;
+		} else {
+			fetch("/usuarios/autenticar", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					emailServer: email,
+					senhaServer: senha,
+				}),
+			})
+				.then(function (resposta) {
+					console.log("ESTOU NO THEN DO entrar()!");
+
+					if (resposta.ok) {
+						console.log(resposta);
+
+						resposta.json().then((json) => {
+							console.log(json);
+							console.log(JSON.stringify(json));
+
+							sessionStorage.EMAIL_USUARIO = json.email;
+							sessionStorage.NOME_USUARIO = json.nome;
+							sessionStorage.ID_USUARIO = json.idUsuario;
+							sessionStorage.USER_USUARIO = json.user;
+							sessionStorage.PFP_USUARIO = json.pfp;
+							sessionStorage.BANNER_USUARIO = json.banner;
+							sessionStorage.BIO_USUARIO = json.bio;
+							sessionStorage.DATAI_USUARIO = json.dataInscricao;
+
+							sessionStorage.CORPRI = json.corpri;
+
+							sessionStorage.CORSEC = "#171010";
+							sessionStorage.CORTERC = "white";
+							sessionStorage.CORSECE = "#0f0f0f";
+
+							fetch(`/usuarios/status/${json.idUsuario}`, {
+								method: "POST",
+								headers: {
+									"Content-Type": "application/json",
+								},
+								body: JSON.stringify({
+
+									statusUsuario: 1,
+
+								}),
+							}).then(function (resposta) {
+								console.log("resposta: ", resposta);
+
+								alert(`Login bem sucedido`);
+								window.location = "feed.html";
+
+							});
+						});
+					} else {
+						alert("Houve um erro ao tentar realizar o login!");
+
+						resposta.text().then((texto) => {
+							console.error(texto);
+						});
+					}
+				})
+				.catch(function (erro) {
+					console.log(erro);
+				});
+
+			return false;
+		}
+	}
+
+	// Array para armazenar empresas cadastradas para validação de código de ativação
+	// let listaEmpresasCadastradas = [];
+
+	// function autenticar() {
+	//   // aguardar();
+
+	//   //Recupere o valor da nova input pelo nome do id
+	//   // Agora vá para o método fetch logo abaixo
+	//   var email = email_input.value;
+	//   var senha = senha_input.value;
+
+	//   // Verificando se há algum campo em branco
+	//   if (
+	//     email == "" ||
+	//     senha == ""
+	//   ) {
+	//     alert(`Mensagem de erro para todos os campos em branco`);
+	//     return false;
+	//   } else {
+
+	//     fetch("/usuarios/autenticar", {
+	//       method: "POST",
+	//       headers: {
+	//         "Content-Type": "application/json"
+	//       },
+	//       body: JSON.stringify({
+	//         emailServer: email,
+	//         senhaServer: senha
+	//       })
+	//     }).then(function (resposta) {
+	//       console.log("ESTOU NO THEN DO entrar()!")
+
+	//       if (resposta.ok) {
+	//         console.log("ESTOU NO id da THEN DO entrar()!")
+	//         console.log(resposta);
+
+	//         res.json().then(json => {
+	//           console.log(json);
+	//           console.log(JSON.stringify(json));
+	//           sessionStorage.EMAIL_USUARIO = json.email;
+	//           sessionStorage.NOME_USUARIO = json.nome;
+	//           sessionStorage.ID_USUARIO = json.idUsuario;
+
+	//           alert(`Login bem sucedido`)
+	//           window.location = "feed.html"
+	//         });
+
+	//       } else {
+
+	//         console.log("Houve um erro ao tentar realizar o login!")
+
+	//         resposta.text().then(texto => {
+	//           console.error(texto);
+	//         });
+	//       }
+
+	//     }).catch(function (erro) {
+	//       console.log(erro);
+	//     })
+
+	//     return false;
+	//   }
+
+	//   function sumirMensagem() {
+	//     cardErro.style.display = "none";
+	//   }
+	// }
+</script>
