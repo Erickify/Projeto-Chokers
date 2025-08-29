@@ -96,8 +96,8 @@ Desenvolver uma aplicação web/rede social temática que sirva como ponto centr
 
 1. **Clone o repositório**
 ```bash
-git clone https://github.com/Erickify/Projeto-Chok.git
-cd Projeto-Chok
+git clone https://github.com/Erickify/Projeto-Chokers.git
+cd projeto-chokers
 cd rede-social
 ```
 
